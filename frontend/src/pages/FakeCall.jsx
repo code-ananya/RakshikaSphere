@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_API_URL || "True";
 
 const CALLERS = [
   { id: "mom",     label: "Maa",     icon: "💕", color: "#ff6b9d", sub: "Most trusted" },

@@ -14,7 +14,7 @@ L.Icon.Default.mergeOptions({
     shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_API_URL || "True";
 const DURATIONS = [
     { label: "15 mins", value: 15 },
     { label: "30 mins", value: 30 },

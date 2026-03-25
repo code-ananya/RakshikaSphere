@@ -3,7 +3,7 @@ import axios from "axios";
 import { MapContainer, TileLayer, Circle, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_API_URL || "True";
 
 const RISK_CONFIG = {
   Critical: { color: "#ff2d55", fillColor: "#ff2d55", emoji: "🚨" },

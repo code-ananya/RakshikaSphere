@@ -3,7 +3,7 @@ import * as faceapi from "face-api.js";
 import { useAuth } from "../context/auth";
 import toast from "react-hot-toast";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_API_URL || "True";
 
 // Emotions that trigger SOS
 const DISTRESS_EMOTIONS = ["fearful", "sad", "disgusted", "angry"];
