@@ -28,6 +28,8 @@ import LiveLocation from "./pages/LiveLocation";
 import VoiceSOS from "./pages/VoiceSOS";
 import SafeWalk from "./pages/SafeWalk";
 import SafetyDashboard from "./pages/SafetyDashboard";
+import EmotionDetection from "./pages/EmotionDetection";
+import ScreamDetection from "./pages/ScreamDetection";
 
 function App() {
   return (
@@ -59,6 +61,8 @@ function App() {
           <Route path="/voice-sos" element={<VoiceSOS />} />
           <Route path="/safe-walk" element={<SafeWalk />} />
           <Route path="/analytics" element={<SafetyDashboard />} />
+          <Route path="/emotion-sos" element={<EmotionDetection />} />
+<Route path="/scream-sos" element={<ScreamDetection />} />
         </Routes>
         <Toaster />
       </Router>

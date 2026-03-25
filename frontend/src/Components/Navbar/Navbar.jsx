@@ -36,6 +36,8 @@ const SAFETY_TOOLS = [
         items: [
             { path: "/voice-sos",  label: "Voice SOS",    desc: "Say 'Help me' to trigger SOS" },
             { path: "/safe-walk",  label: "Safe Walk",    desc: "Auto-alert if no check-in" },
+            { path: "/emotion-sos", label: "Emotion Detection", desc: "Facial distress detection" },
+{ path: "/scream-sos",  label: "Scream Detection",  desc: "Auto SOS on loud sounds" },
         ]
     },
     {
@@ -45,6 +47,7 @@ const SAFETY_TOOLS = [
             { path: "/incident",   label: "View Reports",    desc: "Browse all incidents" },
             { path: "/chat",       label: "Safety Chat",     desc: "Talk to our assistant" },
             { path: "/analytics",  label: "Analytics",       desc: "Safety insights & charts" },
+
         ]
     },
 ];
