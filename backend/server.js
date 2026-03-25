@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:3000",
-    "https://rakshikasphere.vercel.app"
+    "https://rakshika-sphere-l54g.vercel.app"
   ],
   credentials: true
 }));
