@@ -26,7 +26,11 @@ const IncidentSchema = mongoose.Schema(
     },
     lng: {
       type: Number,    // ← ADDED
-    }
+    },
+    acknowledged: {
+    type: Boolean,
+    default: false
+}
   },
   { timestamps: true }
 );
