@@ -1,12 +1,8 @@
 const asyncHandler = require('express-async-handler');
 const { User } = require('../models/userModel');
 const { Emergency } = require('../models/emergencyModel');
+const { sendHelpEmail, sendHelpEmailContacts } = require('../utils/email');
 require('dotenv').config();
-
-// Add whatever these are imported from in your project
-const { getData } = require('../utils/getData');           // adjust path
-const { sendHelpEmail } = require('../utils/sendHelpEmail');         // adjust path
-const { sendHelpEmailContacts } = require('../utils/sendHelpEmailContacts'); // adjust path
 
 const sendemergencyCntrl = asyncHandler(async (req, res) => {
     const { userId, lat, long } = req.body;
@@ -15,14 +11,17 @@ const sendemergencyCntrl = asyncHandler(async (req, res) => {
         return res.status(403).json({ message: "latitude or longitude is missing" });
     }
 
-    const resp = await getData(`https://apis.mapmyindia.com/...`);
+    const resp = await fetch(`https://apis.mapmyindia.com/advanced/map/v1/rev_geocode?lat=${lat}&lng=${long}`, {
+        headers: { Authorization: `Bearer ${process.env.MAPMYINDIA_TOKEN}` }
+    });
+    const data = await resp.json();
 
-    if (!resp || !resp.results) {
+    if (!data || !data.results) {
         return res.status(500).json({ message: "Location service failed" });
     }
 
-    const pincode = resp.results[0].pincode;
-    const formattedAddress = resp.results[0].formatted_address;
+    const pincode = data.results[0].pincode;
+    const formattedAddress = data.results[0].formatted_address;
 
     const user = await User.findById(userId);
     if (!user) {
@@ -37,7 +36,6 @@ const sendemergencyCntrl = asyncHandler(async (req, res) => {
 
     const users = await User.find({ pinCode: pincode });
     const nearby = users.map(u => u.email);
-
     await sendHelpEmailContacts(nearby, lat, long, user.uname, pincode, formattedAddress);
 
     await Emergency.create({
@@ -49,4 +47,26 @@ const sendemergencyCntrl = asyncHandler(async (req, res) => {
     res.status(200).json({ message: "Sent an SOS for help" });
 });
 
-module.exports = { sendemergencyCntrl };
+const getAllEmergencies = asyncHandler(async (req, res) => {
+    const emergencies = await Emergency.find().populate('user').sort({ createdAt: -1 });
+    return res.status(200).json(emergencies);
+});
+
+const getSinglEmergency = asyncHandler(async (req, res) => {
+    const emergency = await Emergency.findById(req.params.id).populate('user');
+    if (!emergency) {
+        return res.status(404).json({ message: "Emergency not found" });
+    }
+    return res.status(200).json(emergency);
+});
+
+const emergencyUpdate = asyncHandler(async (req, res) => {
+    const emergency = await Emergency.findById(req.params.id);
+    if (!emergency) {
+        return res.status(404).json({ message: "Emergency not found" });
+    }
+    const updated = await Emergency.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    return res.status(200).json(updated);
+});
+
+module.exports = { sendemergencyCntrl, getAllEmergencies, getSinglEmergency, emergencyUpdate };
