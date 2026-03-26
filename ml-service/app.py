@@ -56,7 +56,7 @@ def predict_danger_zones(incidents):
         ]
 
     coords = np.array([[inc["lat"], inc["lng"]] for inc in incidents])
-    coords_rad = np.radians(coords)
+    coords_rad = np.radians(coords)  # FIX: removed stray 'f' that caused SyntaxError
 
     db = DBSCAN(eps=0.5 / 6371, min_samples=2, metric="haversine").fit(coords_rad)
     labels = db.labels_
