@@ -1,3 +1,9 @@
+const asyncHandler = require('express-async-handler');
+const { Incident } = require('../models/incidentRptModel');
+const { User } = require('../models/userModel');
+const fs = require('fs');
+require('dotenv').config();
+
 const addIncident = asyncHandler(async (req, res) => {
 
     const {
