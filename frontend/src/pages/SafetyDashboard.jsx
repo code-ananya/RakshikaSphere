@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell, LineChart, Line, ResponsiveContainer, Legend } from "recharts";
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5001";
+const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5001";
 
 const COLORS = ["#ff4444", "#ff8c00", "#ffd700", "#28a745", "#7B61FF"];
 

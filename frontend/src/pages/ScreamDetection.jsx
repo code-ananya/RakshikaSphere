@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useAuth } from "../context/auth";
 import toast from "react-hot-toast";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 
 const SCREAM_THRESHOLD    = 85;   // dB level considered a scream
 const SUSTAINED_MS        = 1500; // must be loud for 1.5 seconds

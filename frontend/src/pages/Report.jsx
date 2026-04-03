@@ -6,7 +6,7 @@ import reports from '../images/report.png'
 import Navbar from '../Components/Navbar/Navbar'
 import Footer from '../Components/Footer/Footer'
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 
 const Report = () => {
     const [report, setReport] = useState('')
