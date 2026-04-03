@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require("axios");
 const { Incident } = require("../models/incidentRptModel");
 
-const ML_SERVICE_URL = process.env.ML_SERVICE_URL || "http://localhost:5001";
+const ML_SERVICE_URL = process.env.REACT_APP_ML_URL || "http://localhost:5001";
 
 router.get("/", async (req, res) => {
     try {

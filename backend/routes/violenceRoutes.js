@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 
-const DETECTOR_URL = process.env.VIOLENCE_DETECTOR_URL || "http://localhost:5004";
+const DETECTOR_URL = process.env.REACT_APP_ML_URL || "http://localhost:5001";
 
 // POST /api/v1/violence/analyze/text
 router.post("/analyze/text", async (req, res) => {

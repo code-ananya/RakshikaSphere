@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 
-const FAKECALL_URL = process.env.FAKE_CALL_URL || "http://localhost:5005";
+const FAKECALL_URL = process.env.REACT_APP_ML_URL || "http://localhost:5001";
 
 // GET /api/v1/fakecall/scripts
 router.get("/scripts", async (req, res) => {

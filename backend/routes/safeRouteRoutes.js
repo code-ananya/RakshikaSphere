@@ -3,8 +3,7 @@ const router = express.Router();
 const axios = require("axios");
 const { Incident } = require("../models/incidentRptModel");
 
-const SAFE_ROUTE_URL = process.env.SAFE_ROUTE_URL || "http://localhost:5003";
-const ML_SERVICE_URL = process.env.ML_SERVICE_URL || "http://localhost:5001";
+const ML_SERVICE_URL = process.env.REACT_APP_ML_URL || "http://localhost:5001";
 
 router.post("/", async (req, res) => {
     try {
@@ -33,7 +32,7 @@ router.post("/", async (req, res) => {
         }
 
         // Call safe route ML service
-        const routeResponse = await axios.post(`${SAFE_ROUTE_URL}/safe-route`, {
+        const routeResponse = await axios.post(`${ML_SERVICE_URL}/safe-route`, {
             start,
             end,
             danger_zones
