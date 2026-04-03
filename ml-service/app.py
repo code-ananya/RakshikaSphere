@@ -14,15 +14,10 @@ import time
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": [
-    "https://rakshika-sphere.vercel.app",
+    "https://rakshika-sphere-l54g.vercel.app",
     "http://localhost:3000"
 ]}}, supports_credentials=True)
-@app.after_request
-def after_request(response):
-    response.headers.add('Access-Control-Allow-Origin', 'https://rakshika-sphere.vercel.app')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-    return response
+
 
 
 # ══════════════════════════════════════════════════════════════
