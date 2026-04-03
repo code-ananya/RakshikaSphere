@@ -21,19 +21,28 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // ── CORS ──────────────────────────────────────────────────────
+const allowedOrigins = [
+  "https://rakshika-sphere-l54g.vercel.app",
+  "https://rakshika-sphere.vercel.app",
+  "http://localhost:3000",
+];
+
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-    if (origin === "https://rakshika-sphere-l54g.vercel.app" || origin === "http://localhost:3000") {
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true); // server-to-server/ Postman
+    if (allowedOrigins.includes(origin)) {
       return callback(null, true);
     }
+    console.warn("CORS blocked origin:", origin);
     return callback(new Error("Not allowed by CORS"));
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+  exposedHeaders: ["Authorization"],
 }));
 
+app.options("*", cors());
 app.options("*", cors());
 // ── Middleware ────────────────────────────────────────────────
 app.use(express.json());
