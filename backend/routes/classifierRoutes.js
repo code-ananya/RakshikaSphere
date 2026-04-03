@@ -20,8 +20,9 @@ router.post("/classify", async (req, res) => {
 
 // Classify all incidents in DB and return with severity
 router.get("/all", async (req, res) => {
+    let incidents = [];
     try {
-        const incidents = await Incident.find({}).sort({ createdAt: -1 });
+        incidents = await Incident.find({}).sort({ createdAt: -1 });
 
         if (!incidents.length) {
             return res.status(200).json({ success: true, incidents: [] });
