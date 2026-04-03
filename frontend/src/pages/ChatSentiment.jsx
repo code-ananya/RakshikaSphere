@@ -5,7 +5,7 @@ import Navbar from "../Components/Navbar/Navbar";
 import Footer from "../Components/Footer/Footer";
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || "True";
+
 const ML_URL = process.env.REACT_APP_ML_URL || "http://localhost:5001";
 
 // Keyword-based sentiment engine (runs in browser, no API call needed)

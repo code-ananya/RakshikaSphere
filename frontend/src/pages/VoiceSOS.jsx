@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useAuth } from "../context/auth";
 import toast from "react-hot-toast";
 
-const API_URL = process.env.REACT_APP_API_URL || "True";
+const API_URL = process.env.REACT_APP_ML_URL || "http://localhost:5001"
 
 const TRIGGER_PHRASES = ["help me", "help", "bachao", "emergency", "sos", "danger"];
 

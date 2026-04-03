@@ -6,7 +6,7 @@ import {
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
-const API_URL = process.env.REACT_APP_API_URL || "True";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5001";
 
 // ── place type config ─────────────────────────────────────────────────────────
 const PLACE_CONFIG = {

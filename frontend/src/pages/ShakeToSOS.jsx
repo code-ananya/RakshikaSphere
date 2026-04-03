@@ -4,8 +4,7 @@ import toast from "react-hot-toast";
 import Navbar from "../Components/Navbar/Navbar";
 import Footer from "../Components/Footer/Footer";
 
-const API_URL = process.env.REACT_APP_API_URL || "True";
-
+const API_URL = process.env.REACT_APP_ML_URL || "http://localhost:5001"
 const ShakeToSOS = () => {
   const [auth] = useAuth();
   const [isActive, setIsActive] = useState(false);
