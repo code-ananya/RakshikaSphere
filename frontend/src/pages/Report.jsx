@@ -6,7 +6,7 @@ import reports from '../images/report.png'
 import Navbar from '../Components/Navbar/Navbar'
 import Footer from '../Components/Footer/Footer'
 
-const API_URL = process.env.REACT_APP_API_URL || "True";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 const Report = () => {
     const [report, setReport] = useState('')
@@ -54,20 +54,21 @@ const Report = () => {
 
         try {
             const res = await axios.post(
-                `${API_URL}/api/v1/incidents`,
-                {
-                    report,
-                    pincodeOfIncident,
-                    address,
-                    lat,    // ← sending GPS coordinates
-                    lng     // ← sending GPS coordinates
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${auth?.token}`
-                    }
-                }
-            );
+    `${API_URL}/api/v1/incidents`,
+    {
+        report,
+        pincodeOfIncident,
+        address,
+        lat,
+        lng,
+        user: auth?.user?._id  // ← add this line
+    },
+    {
+        headers: {
+            Authorization: `Bearer ${auth?.token}`
+        }
+    }
+);
 
             if (res.status === 201) {
                 toast.success('Incident Reported Successfully!')
