@@ -11,13 +11,20 @@ const generateverificationToken = (email) => {
 }
 
 
+const getMailAuth = () => {
+    const user = process.env.EMAIL || process.env.EMAIL_USER || 'rakshikasphere.app@gmail.com';
+    const pass = process.env.PASSWORD || process.env.EMAIL_PASS || '';
+    return { user, pass };
+};
+
 const sendVerificationEmail = async (recipientEmail, verificationToken) => {
     try {
+        const { user, pass } = getMailAuth();
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: process.env.EMAIL,
-                pass: process.env.PASSWORD,
+                user,
+                pass,
             }
 
         })
@@ -42,12 +49,12 @@ const sendVerificationEmail = async (recipientEmail, verificationToken) => {
 
 const sendHelpEmail = async(recipientEmail,lat,long,username,pincode,formatted_address) => {
     try {
-        
+        const { user, pass } = getMailAuth();
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: process.env.EMAIL,
-                pass: process.env.PASSWORD,
+                user,
+                pass,
             }
 
         })
@@ -70,12 +77,12 @@ const sendHelpEmail = async(recipientEmail,lat,long,username,pincode,formatted_a
 
 const sendHelpEmailContacts = async(recipientEmail,lat,long,username,pincode,formatted_address) => {
     try {
-        
+        const { user, pass } = getMailAuth();
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: process.env.EMAIL,
-                pass: process.env.PASSWORD,
+                user,
+                pass,
             }
 
         })

@@ -23,6 +23,9 @@ const ContactUs = () => {
                             <div className="featured-image mb-3 animateImg">
                                 <img src={email} className="img-fluid" alt="Report" />
                             </div>
+                            <div className="text-center mt-3">
+                                <strong>Support Email:</strong> <a href="mailto:rakshikasphere.app@gmail.com">rakshikasphere.app@gmail.com</a>
+                            </div>
                         </div>
                         <form className="col-md-6 right-box" action="https://formspree.io/f/mzbqpgzj" method="POST" onSubmit={notify}>
                             <div className="row align-items-center">
