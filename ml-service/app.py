@@ -13,7 +13,7 @@ import io
 import time
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": [
+CORS(app, resources={r"/api/v1/*": {"origins": [
     "https://rakshika-sphere-l54g.vercel.app",
     "http://localhost:3000"
 ]}}, supports_credentials=True)
