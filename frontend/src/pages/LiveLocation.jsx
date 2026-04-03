@@ -14,7 +14,7 @@ L.Icon.Default.mergeOptions({
     shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
 
-const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5001";
+const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 const DURATIONS = [
     { label: "15 mins", value: 15 },
     { label: "30 mins", value: 30 },
@@ -59,7 +59,7 @@ const LiveLocation = () => {
                 await axios.post(`${API_URL}/api/v1/emergency/live-location`, {
                     userId: auth?.user?._id,
                     lat: position[0],
-                    lng: position[1],
+                    long: position[1],
                     timestamp: new Date().toISOString(),
                 });
             } catch (e) {

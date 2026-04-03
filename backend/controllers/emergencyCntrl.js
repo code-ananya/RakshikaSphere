@@ -69,4 +69,20 @@ const emergencyUpdate = asyncHandler(async (req, res) => {
     return res.status(200).json(updated);
 });
 
-module.exports = { sendemergencyCntrl, getAllEmergencies, getSinglEmergency, emergencyUpdate };
+const liveLocationCntrl = asyncHandler(async (req, res) => {
+    const { userId, lat, long } = req.body;
+    if (!userId || lat === undefined || long === undefined) {
+        return res.status(400).json({ message: "Missing userId / lat / long" });
+    }
+
+    // store live location record for audit/real-time tracking if needed
+    await Emergency.create({
+        user: userId,
+        emergencyLctOnMap: `https://maps.google.com/maps?q=${lat},${long}`,
+        addressOfIncd: "Live location update"
+    });
+
+    return res.status(200).json({ message: "Live location received" });
+});
+
+module.exports = { sendemergencyCntrl, getAllEmergencies, getSinglEmergency, emergencyUpdate, liveLocationCntrl };
