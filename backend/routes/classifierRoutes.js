@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require("axios");
 const { Incident } = require("../models/incidentRptModel");
 
-const CLASSIFIER_URL = process.env.CLASSIFIER_URL || "http://localhost:5002";
+const CLASSIFIER_URL = process.env.ML_SERVICE_URL || "http://localhost:5002";
 
 // Classify a single report text
 router.post("/classify", async (req, res) => {
