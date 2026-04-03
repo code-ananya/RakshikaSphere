@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 const ML_URL = process.env.REACT_APP_ML_URL || "http://localhost:5001";
-
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 const RISK_COLORS = {
   low:      { color: "#22c55e", bg: "#f0fff4", bar: "#22c55e", icon: "🟢", label: "Low" },
   medium:   { color: "#f59e0b", bg: "#fffbeb", bar: "#f59e0b", icon: "🟡", label: "Medium" },

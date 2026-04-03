@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_ML_URL || "http://localhost:5001";
 
 const SEVERITY_CONFIG = {
   Critical: { color: "#ff2d55", bg: "rgba(255,45,85,0.12)", border: "rgba(255,45,85,0.3)", emoji: "🚨", priority: 1 },

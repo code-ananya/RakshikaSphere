@@ -3,7 +3,7 @@ import axios from "axios";
 import { MapContainer, TileLayer, Circle, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-const API_URL = process.env.REACT_APP_ML_URL || "http://localhost:5001"
+const ML_URL = process.env.REACT_APP_ML_URL || "http://localhost:5001"
 const RISK_CONFIG = {
   Critical: { color: "#ff2d55", fillColor: "#ff2d55", emoji: "🚨" },
   High:     { color: "#ff6b35", fillColor: "#ff6b35", emoji: "🔴" },
@@ -37,7 +37,7 @@ export default function DangerZoneMap() {
     try {
       setLoading(true);
       setError(null);
-      const res = await axios.get(`${API_URL}/api/v1/dangerzones`);
+      const res = await axios.get(`${ML_URL}/api/v1/dangerzones`);
       if (res.data.success) {
         setDangerZones(res.data.danger_zones || []);
         setStats({ total: res.data.total_incidents || 0, clusters: res.data.total_clusters || 0 });

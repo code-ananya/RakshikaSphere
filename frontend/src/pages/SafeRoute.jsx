@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, Polyline, Circle, Marker, Popup, useMap } from
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
  
-const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
  
 const ROUTE_COLORS = ["#30d158", "#ffd60a", "#ff6b35"];
  

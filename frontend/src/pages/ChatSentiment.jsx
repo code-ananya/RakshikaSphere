@@ -7,6 +7,7 @@ import axios from "axios";
 
 
 const ML_URL = process.env.REACT_APP_ML_URL || "http://localhost:5001";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 // Keyword-based sentiment engine (runs in browser, no API call needed)
 const DISTRESS_KEYWORDS = [
@@ -110,8 +111,10 @@ const ChatSentiment = () => {
         } catch {}
         // Notify admin via backend
         try {
-          await axios.post(
-            `${API_URL}/api/v1/incidents`,
+          // fixed ✅
+// fixed ✅
+await axios.post(
+    `${API_URL}/api/v1/incidents`,
             {
               report: `⚠️ AUTO-ESCALATED: Distress detected in chat — "${input}"`,
               pincodeOfIncident: "000000",
