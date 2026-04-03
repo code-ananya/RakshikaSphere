@@ -55,7 +55,26 @@ router.get("/all", async (req, res) => {
 
         return res.status(200).json({ success: true, incidents: enriched, total: enriched.length });
     } catch (error) {
-        return res.status(500).json({ success: false, message: "Failed to classify incidents", error: error.message });
+        console.error("Classifier service error:", error.message);
+        // Fallback: return incidents with default severity if ML service fails
+        const fallbackIncidents = incidents.map(inc => ({
+            _id: inc._id,
+            report: inc.report,
+            address: inc.address,
+            pincodeOfIncident: inc.pincodeOfIncident,
+            isSeen: inc.isSeen,
+            meidaSt: inc.meidaSt,
+            createdAt: inc.createdAt,
+            severity: "Low",
+            confidence: 0.4,
+            suggested_action: "Review as needed."
+        }));
+        return res.status(200).json({
+            success: true,
+            incidents: fallbackIncidents,
+            total: fallbackIncidents.length,
+            message: "Classification service unavailable, showing default severity"
+        });
     }
 });
 
