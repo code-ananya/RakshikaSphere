@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { API_URL } from "../config";
 import Sidebar from "../Components/Dash/Sidebar";
 import { useAuth } from "../context/auth";
+import { Link } from "react-router-dom";
 
 const Dashboard = (props) => {
   const [auth, setAuth] = useAuth();
@@ -70,6 +71,16 @@ const Dashboard = (props) => {
       <Sidebar />
       <div className="container table-responsive mx-3">
         <div className="features_wrapper" style={{ marginTop: "-50px" }}>
+          <div className="row mb-4">
+            <div className="col-12 text-center d-flex justify-content-center gap-3">
+              <Link to="/stealth" className="btn btn-outline-secondary btn-lg shadow-sm" title="Calculate Quick Expenses">
+                🧮 Budget Calculator
+              </Link>
+              <Link to="/evidence" className="btn btn-primary btn-lg shadow-sm">
+                📁 Evidence Vault
+              </Link>
+            </div>
+          </div>
           <div className="row">
             <div className="col-12 text-center">
               <p className="features_subtitle">Latest Women Emergency Alert!</p>

@@ -4,6 +4,7 @@ const express = require("express");
 const errorHandler = require("./middlewares/errorHandler");
 const connectDB = require("./database/db");
 const cors = require("cors");
+const path = require("path");
 
 const userRoutes = require("./routes/userRoutes");
 const incRoutes = require("./routes/incidentRoutes");
@@ -16,6 +17,7 @@ const violenceRoutes = require("./routes/violenceRoutes");
 const fakeCallRoutes = require("./routes/fakeCallRoutes");
 const sosRoutes = require("./routes/sosRoutes");
 const safePlacesRoutes = require("./routes/safePlacesRoutes");
+const evidenceRoutes = require("./routes/evidenceRoutes");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -46,6 +48,7 @@ app.options("*", cors());
 app.options("*", cors());
 // ── Middleware ────────────────────────────────────────────────
 app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // ── Routes ────────────────────────────────────────────────────
 app.use("/api/v1/users", userRoutes);
@@ -59,6 +62,7 @@ app.use("/api/v1/violence", violenceRoutes);
 app.use("/api/v1/fakecall", fakeCallRoutes);
 app.use("/api/v1/sos", sosRoutes);
 app.use("/api/v1/safeplaces", safePlacesRoutes);
+app.use("/api/v1/evidence", evidenceRoutes);
 
 // ── Health check ──────────────────────────────────────────────
 app.get("/", (req, res) => {

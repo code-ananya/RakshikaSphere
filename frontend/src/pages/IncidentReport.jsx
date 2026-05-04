@@ -54,6 +54,7 @@ const IncidentReport = () => {
                 <th scope="col">Report</th>
                 <th scope="col">Address</th>
                 <th scope="col">Pincode</th>
+                <th scope="col">Proof</th>
                 <th scope="col">Date</th>
               </tr>
             </thead>
@@ -66,6 +67,19 @@ const IncidentReport = () => {
                     <td>{p.address || "N/A"}</td>
                     <td>{p.pincodeOfIncident || p.pincode || "N/A"}</td>
                     <td>
+                      {p.meidaSt ? (
+                        <a href={p.meidaSt.startsWith('http') ? p.meidaSt : `${API_URL}${p.meidaSt}`} target="_blank" rel="noopener noreferrer">
+                          <img 
+                            src={p.meidaSt.startsWith('http') ? p.meidaSt : `${API_URL}${p.meidaSt}`} 
+                            alt="Proof" 
+                            style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '5px' }} 
+                          />
+                        </a>
+                      ) : (
+                        "No proof"
+                      )}
+                    </td>
+                    <td>
                       {p.createdAt
                         ? new Date(p.createdAt).toLocaleDateString()
                         : "N/A"}
@@ -74,7 +88,7 @@ const IncidentReport = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="5" className="text-muted py-4">
+                  <td colSpan="6" className="text-muted py-4">
                     No incidents reported yet.
                   </td>
                 </tr>

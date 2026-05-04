@@ -15,6 +15,7 @@ const addIncident = asyncHandler(async (req, res) => {
     let mediaUrl = null;
 
     if (note) {
+        mediaUrl = `/${note.replace(/\\/g, '/')}`;
         try {
             const AWS = require("aws-sdk");
             if (

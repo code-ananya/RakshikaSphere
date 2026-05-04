@@ -12,6 +12,7 @@ const Report = () => {
     const [report, setReport] = useState('')
     const [pincodeOfIncident, setpincodeOfIncident] = useState('')
     const [address, setAddress] = useState('')
+    const [proof, setProof] = useState(null)
     const [lat, setLat] = useState(null)
     const [lng, setLng] = useState(null)
     const [locationStatus, setLocationStatus] = useState('Detecting your location...')
@@ -51,30 +52,38 @@ const Report = () => {
             toast.error('Address is Required!')
             return false
         }
+        if (!proof) {
+            toast.error('Valid proof (photo) is Required!')
+            return false
+        }
 
         try {
+            const formData = new FormData();
+            formData.append('report', report);
+            formData.append('pincodeOfIncident', pincodeOfIncident);
+            formData.append('address', address);
+            if (lat) formData.append('lat', lat);
+            if (lng) formData.append('lng', lng);
+            if (auth?.user?._id) formData.append('user', auth?.user?._id);
+            formData.append('note', proof);
+
             const res = await axios.post(
-    `${API_URL}/api/v1/incidents`,
-    {
-        report,
-        pincodeOfIncident,
-        address,
-        lat,
-        lng,
-        user: auth?.user?._id  // ← add this line
-    },
-    {
-        headers: {
-            Authorization: `Bearer ${auth?.token}`
-        }
-    }
-);
+                `${API_URL}/api/v1/incidents`,
+                formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${auth?.token}`,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+            );
 
             if (res.status === 201) {
                 toast.success('Incident Reported Successfully!')
                 setReport('')
                 setpincodeOfIncident('')
                 setAddress('')
+                setProof(null)
             }
         } catch (err) {
             toast.error('Error in Sending Report')
@@ -147,6 +156,19 @@ const Report = () => {
                                             onChange={(e) => setAddress(e.target.value)}
                                             className="form-control form-control-lg border-dark fs-6"
                                             placeholder="Enter the Address of the Incident"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="input-group d-flex flex-row align-items-center mb-3">
+                                    <div className="form-outline flex-fill mb-0">
+                                        <label className="form-label" style={{ fontSize: '14px', fontWeight: 'bold' }}>Upload Valid Proof (Photo) *</label>
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={(e) => setProof(e.target.files[0])}
+                                            className="form-control form-control-lg border-dark fs-6"
                                             required
                                         />
                                     </div>

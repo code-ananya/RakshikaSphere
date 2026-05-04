@@ -38,6 +38,7 @@ const SAFETY_TOOLS = [
             { path: "/safe-walk",  label: "Safe Walk",    desc: "Auto-alert if no check-in" },
             { path: "/emotion-sos", label: "Emotion Detection", desc: "Facial distress detection" },
 { path: "/scream-sos",  label: "Scream Detection",  desc: "Auto SOS on loud sounds" },
+            { path: "/stealth",     label: "Budget Calculator", desc: "Calculate quick expenses" },
         ]
     },
     {
@@ -47,7 +48,7 @@ const SAFETY_TOOLS = [
             { path: "/incident",   label: "View Reports",    desc: "Browse all incidents" },
             { path: "/chat",       label: "Safety Chat",     desc: "Talk to our assistant" },
             { path: "/analytics",  label: "Analytics",       desc: "Safety insights & charts" },
-
+            { path: "/evidence",   label: "Evidence Vault",  desc: "Secure incident recordings" },
         ]
     },
 ];

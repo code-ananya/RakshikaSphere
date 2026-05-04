@@ -30,6 +30,8 @@ import SafeWalk from "./pages/SafeWalk";
 import SafetyDashboard from "./pages/SafetyDashboard";
 import EmotionDetection from "./pages/EmotionDetection";
 import ScreamDetection from "./pages/ScreamDetection";
+import StealthMode from "./pages/StealthMode";
+import EvidenceVault from "./pages/EvidenceVault";
 
 function App() {
   return (
@@ -63,6 +65,8 @@ function App() {
           <Route path="/analytics" element={<SafetyDashboard />} />
           <Route path="/emotion-sos" element={<EmotionDetection />} />
 <Route path="/scream-sos" element={<ScreamDetection />} />
+          <Route path="/stealth" element={<StealthMode />} />
+          <Route path="/evidence" element={<EvidenceVault />} />
         </Routes>
         <Toaster />
       </Router>
