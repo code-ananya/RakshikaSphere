@@ -161,19 +161,7 @@ const loginUser = asyncHandler(async (req, res) => {
     });
   }
 
-  const accessToken = jwt.sign(
-    {
-      user: {
-        username: user.uname,
-        email: user.email,
-        id: user._id
-      }
-    },
-    process.env.ACCESS_TOKEN_SECRET,
-    {
-      expiresIn: "1yr"
-    }
-  );
+  expiresIn: "1y"
 
   return res.status(200).json({
     user,

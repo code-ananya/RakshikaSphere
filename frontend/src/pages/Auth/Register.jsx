@@ -26,13 +26,13 @@ const Register = () => {
         if (!uname.trim()) { toast.error('Name is required'); return false; }
         if (!email.trim()) { toast.error('Email is required'); return false; }
         if (!validateEmail(email)) { toast.error('Invalid Email Format'); return false; }
-        if (!phone.trim()) { toast.error('Phone Number is required'); return false; }
+        if (!String(phone).trim()) { toast.error('Phone Number is required'); return false; }
         if (!password.trim()) { toast.error('Password is required'); return false; }
-        if (!emergencyNo.trim()) { toast.error('Emergency Number is required'); return false; }
-        if (phone === emergencyNo) { toast.error('Emergency Phone and Personal Phone must be different'); return false; }
+        if (!String(emergencyNo).trim()) { toast.error('Emergency Number is required'); return false; }
+        if (String(phone) === String(emergencyNo)) { toast.error('Emergency Phone and Personal Phone must be different'); return false; }
         if (!emergencyMail.trim()) { toast.error('Emergency Email is required'); return false; }
         if (email === emergencyMail) { toast.error('Emergency Email and Personal Email must be different'); return false; }
-        if (!pincode.trim()) { toast.error('PinCode is required'); return false; }
+        if (!String(pincode).trim()) { toast.error('PinCode is required'); return false; }
 
         try {
             const res = await axios.post(`${API_URL}/api/v1/users/register`, {

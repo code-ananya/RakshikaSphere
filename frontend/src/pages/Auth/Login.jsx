@@ -20,18 +20,19 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!validateEmail(email)) {
-            toast.error('Invalid Email Format');
-            return false;
-        }
-        if (!email.trim()) {
-            toast.error('Email is required');
-            return false;
-        }
-        if (!password.trim()) {
-            toast.error('Password is required');
-            return false;
-        }
+        // ✅ Check empty first, then format
+if (!email.trim()) {
+    toast.error('Email is required');
+    return false;
+}
+if (!validateEmail(email)) {
+    toast.error('Invalid Email Format');
+    return false;
+}
+if (!password.trim()) {
+    toast.error('Password is required');
+    return false;
+}
         try {
             const res = await axios.post(`${API_URL}/api/v1/users/login`, {
                 email, password
