@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import '../styles/stealth.css';
-import { API_URL } from "../config";
+import { API_URL } from "../config.js";
 
 const StealthMode = () => {
   const [displayValue, setDisplayValue] = useState('0');
