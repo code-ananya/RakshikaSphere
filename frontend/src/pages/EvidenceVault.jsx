@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { API_URL } from "../../config";
 
 const EvidenceVault = () => {
   const [evidenceList, setEvidenceList] = useState([]);
@@ -8,7 +9,7 @@ const EvidenceVault = () => {
   useEffect(() => {
     const fetchEvidence = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/v1/evidence');
+        const { data } = await axios.get(`${API_URL}/api/v1/evidence`);
         setEvidenceList(data);
       } catch (error) {
         console.error("Error fetching evidence:", error);
@@ -22,7 +23,7 @@ const EvidenceVault = () => {
   const deleteEvidence = async (id) => {
     if (!window.confirm("Are you sure you want to delete this evidence?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/v1/evidence/${id}`);
+      await axios.delete(`${API_URL}/api/v1/evidence/${id}`);
       setEvidenceList(evidenceList.filter(item => item._id !== id));
     } catch (error) {
       console.error("Error deleting evidence:", error);
@@ -74,13 +75,13 @@ const EvidenceVault = () => {
                 <div className="p-4">
                   {item.fileType === 'video' ? (
                     <video 
-                      src={`http://localhost:5000${item.filePath}`} 
+                      src={`${API_URL}${item.filePath}`} 
                       controls 
                       className="w-full h-48 object-cover rounded-xl bg-black"
                     />
                   ) : item.fileType === 'audio' ? (
                     <audio 
-                      src={`http://localhost:5000${item.filePath}`} 
+                      src={`${API_URL}${item.filePath}`}
                       controls 
                       className="w-full mt-4"
                     />

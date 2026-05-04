@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import '../styles/stealth.css';
+import { API_URL } from "../config";
 
 const StealthMode = () => {
   const [displayValue, setDisplayValue] = useState('0');
@@ -60,7 +61,7 @@ const StealthMode = () => {
         formData.append('triggerType', 'StealthCalculator');
 
         try {
-          await axios.post('http://localhost:5000/api/v1/evidence', formData, {
+          await axios.post(`${API_URL}/api/v1/evidence`, formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
           });
           toast.success('Evidence stored securely.');
