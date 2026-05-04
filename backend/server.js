@@ -27,14 +27,20 @@ const allowedOrigins = [
   "https://rakshika-sphere-l54g.vercel.app",
   "https://rakshika-sphere.vercel.app",
   "http://localhost:3000",
+  "http://localhost:5173",
 ];
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin) return callback(null, true); // server-to-server/ Postman
-    if (allowedOrigins.includes(origin)) {
+    if (!origin) return callback(null, true);
+
+    // ✅ Allow any Vercel preview deploy for your project
+    const isVercelPreview = /^https:\/\/rakshika-sphere.*\.vercel\.app$/.test(origin);
+
+    if (allowedOrigins.includes(origin) || isVercelPreview) {
       return callback(null, true);
     }
+
     console.warn("CORS blocked origin:", origin);
     return callback(new Error("Not allowed by CORS"));
   },
